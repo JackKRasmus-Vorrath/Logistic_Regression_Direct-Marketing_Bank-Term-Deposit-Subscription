@@ -1,0 +1,129 @@
+#Variable Importance
+##absolute value of the t-statistic for each model parameter
+
+> varImp(glm_rfe_ROC$fit)
+                        Overall
+last.contact.duration 55.561368
+has.housing.loan      24.359323
+contact.type          20.911301
+contacts.num.prev     12.082811
+days.passed           11.028599
+contacts.num          11.285558
+has.personal.loan     10.791241
+highest.educ           7.620280
+prev.outcome           6.514016
+last.contact.moy       6.021243
+marital.status         5.772943
+age                    3.941878
+avg.annual.balance     3.853978
+
+
+#Wald Test
+## ratio of the square of the regression coefficient 
+## 		to the square of the standard error of the coefficient.
+## If the test fails to reject the null hypothesis, removing 
+##		the variable from the model will not substantially harm fit.
+
+library(survey)
+
+regTermTest(glm_rfe_ROC$fit, "last.contact.duration")
+
+Wald test for last.contact.duration
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  3087.066  on  1  and  33894  df: p= < 2.22e-16
+
+regTermTest(glm_rfe_ROC$fit, "has.housing.loan")
+
+Wald test for has.housing.loan
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  593.3766  on  1  and  33894  df: p= < 2.22e-16 
+
+regTermTest(glm_rfe_ROC$fit, "contact.type")
+
+Wald test for contact.type
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  437.2825  on  1  and  33894  df: p= < 2.22e-16 
+
+regTermTest(glm_rfe_ROC$fit, "contacts.num.prev")
+
+Wald test for contacts.num.prev
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  145.9943  on  1  and  33894  df: p= < 2.22e-16 
+
+regTermTest(glm_rfe_ROC$fit, "days.passed")
+
+Wald test for days.passed
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  121.63  on  1  and  33894  df: p= < 2.22e-16 
+
+regTermTest(glm_rfe_ROC$fit, "contacts.num")
+
+Wald test for contacts.num
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  127.3638  on  1  and  33894  df: p= < 2.22e-16
+
+regTermTest(glm_rfe_ROC$fit, "has.personal.loan")
+
+Wald test for has.personal.loan
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  116.4509  on  1  and  33894  df: p= < 2.22e-16
+
+regTermTest(glm_rfe_ROC$fit, "highest.educ")
+
+Wald test for highest.educ
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  58.06867  on  1  and  33894  df: p= 2.5971e-14 
+
+regTermTest(glm_rfe_ROC$fit, "prev.outcome")
+
+Wald test for prev.outcome
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  42.43241  on  1  and  33894  df: p= 7.4191e-11
+
+regTermTest(glm_rfe_ROC$fit, "last.contact.moy")
+
+Wald test for last.contact.moy
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  36.25536  on  1  and  33894  df: p= 1.7486e-09 
+
+regTermTest(glm_rfe_ROC$fit, "marital.status")
+
+Wald test for marital.status
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  33.32687  on  1  and  33894  df: p= 7.8577e-09 
+
+regTermTest(glm_rfe_ROC$fit, "age")
+
+Wald test for age
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  15.5384  on  1  and  33894  df: p= 8.1008e-05
+
+regTermTest(glm_rfe_ROC$fit, "avg.annual.balance")
+
+Wald test for avg.annual.balance
+ in glm(formula = Class ~ ., family = "binomial", data = tmp)
+F =  14.85314  on  1  and  33894  df: p= 0.00011643
+
+
+
+summary(glm_rfe_ROC$fit)
+
+
+
+> vif(glm_rfe_ROC$fit)
+last.contact.duration      has.housing.loan          contact.type     contacts.num.prev 
+             1.078638              1.188268              1.143578              1.463514 
+          days.passed          contacts.num     has.personal.loan          highest.educ 
+             3.570160              1.034276              1.015503              1.041952 
+         prev.outcome      last.contact.moy        marital.status                   age 
+             3.805457              1.118619              1.272479              1.342984 
+   avg.annual.balance 
+             1.026240 
+
+
+
+
+
+
+
+

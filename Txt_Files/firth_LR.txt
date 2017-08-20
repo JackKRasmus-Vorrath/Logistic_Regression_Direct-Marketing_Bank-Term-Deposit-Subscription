@@ -1,0 +1,16 @@
+> firth_LR <- logistf(formula = model_formula, data = bank.validate, firth = TRUE)
+> betas <- coef(firth_LR)
+> X_firth <- model.matrix(model_formula, data=bank.validate)
+> pi.obs <- 1 / (1 + exp(-X_firth %*% betas))
+> pi.obs[1:5]
+[1] 0.01379246 0.17899493 0.01336450 0.01724041 0.02566174
+> firth_LR$predict[1:5]
+[1] 0.01379246 0.17899493 0.01336450 0.01724041 0.02566174
+> new.x <- c(1, rep(1, 13))
+> 1 / (1 + exp(-new.x %*% betas))
+           [,1]
+[1,] 0.01104762
+> new.x_2 <- c(1, rep(0, 13))
+> 1 / (1 + exp(-new.x_2 %*% betas))
+           [,1]
+[1,] 0.05444611
